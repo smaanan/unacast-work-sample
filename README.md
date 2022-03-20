@@ -17,3 +17,13 @@ The analysis of the NYC Citibike data consisted in three parts:
 -   The second part consisted of a geographic location data analysis to understand the pattern of movement between different types of users and changes over time;
 
 -   The third part was a statistical analysis of the impact of weather factors on the use of NYC Citibike (Temperature, Rain, Snow).
+
+## Explore and understand the dataset
+
+### The most popular start station
+
+```sql
+
+SELECT 
+
+```
