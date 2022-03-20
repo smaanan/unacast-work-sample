@@ -1,4 +1,3 @@
-# unacast-work-sample
-Unacast Work Sample Data Scientist 2022
+# Unacast Work Sample Data Scientist 2022
 
-This is a line from RStudio.
+This repository contains the code and the supporting data files for recreating the answers I provided for the Unacast Work Sample Data Scientist 2022, which was about extracting insights from the NYC Citibike data set found here.
