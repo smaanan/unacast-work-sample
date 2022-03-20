@@ -24,6 +24,54 @@ The analysis of the NYC Citibike data consisted in three parts:
 
 ```sql
 
-SELECT 
+SELECT
+  start_station_name,
+  COUNT(*) AS num_trips
+FROM
+  `bigquery-public-data.new_york.citibike_trips`
+GROUP BY 1
+ORDER BY num_trips DESC
+LIMIT 1
 
+```
+
+## The most popular end station
+
+```sql
+
+SELECT
+  end_station_name,
+  COUNT(*) AS num_trips
+FROM
+  `bigquery-public-data.new_york.citibike_trips`
+GROUP BY 1
+ORDER BY num_trips DESC
+LIMIT 1
+
+```
+
+## Gender distribution of Citibike users
+
+```sql
+
+SELECT 
+100*SUM(CASE WHEN gender = 'male' THEN 1 ELSE 0 END)/ COUNT (*) Male_prc,
+100*SUM(CASE WHEN gender = 'female' THEN 1 ELSE 0 END)/ COUNT (*) Female_prc,
+FROM 
+ `bigquery-public-data.new_york.citibike_trips`
+
+```
+
+## Trip duration distribution
+
+## New bike stations introduced
+
+```sql
+
+SELECT
+  EXTRACT (YEAR FROM starttime)  AS year,
+  count(DISTINCT start_station_id)              AS Stations
+FROM `bigquery-public-data.new_york.citibike_trips`
+GROUP BY 1
+ORDER BY year;
 ```
