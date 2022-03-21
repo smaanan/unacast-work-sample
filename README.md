@@ -34,6 +34,11 @@ ORDER BY num_trips DESC
 LIMIT 1
 
 ```
+Gives the following result:
+
+| start_station_name | num_trips |
+|--------------------|-----------|
+| E 17 St & Broadway | 291615    |
 
 ## The most popular end station
 
@@ -49,6 +54,11 @@ ORDER BY num_trips DESC
 LIMIT 1
 
 ```
+Gives the following result:
+
+| end_station_name   | num_trips |
+|--------------------|-----------|
+| E 17 St & Broadway | 307500    |
 
 ## Gender distribution of Citibike users
 
@@ -61,6 +71,11 @@ FROM
  `bigquery-public-data.new_york.citibike_trips`
 
 ```
+Gives the following result:
+
+| Male_prc           | Female_prc        |
+|--------------------|-------------------|
+| 67.076746767364313 | 20.64521767582653 |
 
 ## Trip duration distribution
 
@@ -75,3 +90,14 @@ FROM `bigquery-public-data.new_york.citibike_trips`
 GROUP BY 1
 ORDER BY year;
 ```
+
+Gives the following result:
+
+| year | Stations |
+|------|----------|
+| 2013 | 330      |
+| 2014 | 332      |
+| 2015 | 488      |
+| 2016 | 643      |
+
+We can see that there has been an increase in the number of bike station over the years, as there is an increase in the number of stations used from 330 in 2013 to 643 in 2016.
