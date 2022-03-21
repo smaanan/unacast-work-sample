@@ -40,7 +40,7 @@ Gives the following result:
 |--------------------|-----------|
 | E 17 St & Broadway | 291615    |
 
-## The most popular end station
+### The most popular end station
 
 ```sql
 
@@ -60,7 +60,9 @@ Gives the following result:
 |--------------------|-----------|
 | E 17 St & Broadway | 307500    |
 
-## Gender distribution of Citibike users
+We can see that the Citibike station on E 17 St & Broadway is the most used station, both as start station and as end station.
+
+### Gender distribution of Citibike users
 
 ```sql
 
@@ -77,9 +79,33 @@ Gives the following result:
 |--------------------|-------------------|
 | 67.076746767364313 | 20.64521767582653 |
 
-## Trip duration distribution
+67 percent of users are male, whereas 20 percent of users are females.
 
-## New bike stations introduced
+### Trip duration distribution
+
+```sql
+
+SELECT 
+CASE 
+WHEN tripduration BETWEEN 0 AND 300 THEN '0-5 MIN'
+WHEN tripduration BETWEEN 301 AND 900 THEN '5-15 MIN'
+ELSE '15+ MIN'
+END AS Duration, COUNT(*)
+FROM  `bigquery-public-data.new_york.citibike_trips`
+GROUP BY 1
+```
+
+Gives the following results:
+
+| Duration | f0_      |
+|----------|----------|
+| 0-5 MIN  | 4884693  |
+| 5-15 MIN | 17765063 |
+| 15+ MIN  | 10669263 |
+
+That is, about 4.8 Million users ride for 5 minutes or less, more that 17 million users ride between 5 and 15 minutes, and about 10 million users ride for 15 minutes or more.
+
+### New bike stations introduced
 
 ```sql
 
