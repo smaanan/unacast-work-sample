@@ -170,3 +170,4 @@ ggplot(data = melt(select(trips_by_snow_depth, actual, predicted, avg_snow_depth
   theme_bw()
 
 ggsave(path = "Graphs", filename = "snow_impact.png")
+

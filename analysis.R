@@ -4,6 +4,7 @@ library(lubridate)
 library(ggplot2)
 library(reshape2)
 library(zoo)
+library(gridExtra)
 library(scales)
 library(rgdal)
 library(maptools)
@@ -154,6 +155,8 @@ ggsave(path = "Graphs", filename = "trips_starting_location_2013.png")
 
 # Locations from which trips started 2019 Map
 
+names(Dec_2019) = make.names(names(Dec_2019))
+
 from <- data.frame(lon=as.numeric(Dec_2019$start.station.longitude), lat=as.numeric(Dec_2019$start.station.latitude))
 
 to   <- data.frame(lon=as.numeric(Dec_2019$end.station.longitude), lat=as.numeric(Dec_2019$end.station.latitude))
@@ -217,21 +220,23 @@ dist1 = unique(dist1)
 
 dist2 = unique(dist2)
 
-ggplot() +
+p1 = ggplot() +
   geom_polygon(data = nyc_map, aes(x = long, y = lat, group = group), fill = "white", color = "cornsilk2") +
   coord_sf(xlim = c(-74.05, -73.90), ylim = c(40.65, 40.83)) + xlab("Longitude") + ylab("Latitude") +
-  labs(title = "Ctibike Bike Stations", subtitle = "Data from December 2019") +
+  labs(title = "Citi Bike Stations", subtitle = "Data from December 2019") +
   geom_point(data = dist2, aes(x = start.station.longitude, y = start.station.latitude), color = "red", size = 1) +
   theme(panel.background = element_rect(fill = 'aliceblue'), plot.margin=grid::unit(c(0,0,0,0), "mm")) 
 
-ggsave(path = "Graphs", filename = "bike_stations_2013.png")
+# ggsave(path = "Graphs", filename = "bike_stations_2013.png")
 
-ggplot() +
+p2 = ggplot() +
   geom_polygon(data = nyc_map, aes(x = long, y = lat, group = group), fill = "white", color = "cornsilk2") +
   coord_sf(xlim = c(-74.05, -73.90), ylim = c(40.65, 40.83)) + xlab("Longitude") + ylab("Latitude") +
-  labs(title = "Ctibike Bike Stations", subtitle = "Data from December 2013") +
+  labs(title = "Citi Bike Stations", subtitle = "Data from December 2013") +
   geom_point(data = dist1, aes(x = start.station.longitude, y = start.station.latitude), color = "red", size = 1) +
   theme(panel.background = element_rect(fill = 'aliceblue'), plot.margin=grid::unit(c(0,0,0,0), "mm"))
+
+grid.arrange(p2, p1, ncol = 2)
 
 ggsave(path = "Graphs", filename = "bike_stations_2019.png")
 
@@ -247,7 +252,7 @@ n.trips=n())
 ggplot() +
   geom_polygon(data = nyc_map, aes(x = long, y = lat, group = group), fill = "white", color = "cornsilk2") +
   coord_sf(xlim = c(-74.05, -73.90), ylim = c(40.65, 40.83)) + xlab("Longitude") + ylab("Latitude") +
-  labs(title = "Ctibike Stations Activity", subtitle = "Data from December 2019") +
+  labs(title = "Citi Bike Stations Activity", subtitle = "Data from December 2019") +
   geom_point(data = station.info, aes(x = long, y = lat, color = n.trips), size = 1) +
   scale_colour_gradient(high="red",low="green") + 
   theme(panel.background = element_rect(fill = 'aliceblue'))
