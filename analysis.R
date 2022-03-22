@@ -236,9 +236,13 @@ p2 = ggplot() +
   geom_point(data = dist1, aes(x = start.station.longitude, y = start.station.latitude), color = "red", size = 1) +
   theme(panel.background = element_rect(fill = 'aliceblue'), plot.margin=grid::unit(c(0,0,0,0), "mm"))
 
-grid.arrange(p2, p1, ncol = 2)
+ # ggsave(path = "Graphs", filename = "bike_stations_2019.png")
 
-ggsave(path = "Graphs", filename = "bike_stations_2019.png")
+gridExtra::grid.arrange(p2, p1, ncol = 2)
+
+g = arrangeGrob(p2, p1, ncol = 2)
+
+ggsave("2013_2019_bike_stations.png", g)
 
 # NYC Citibike Station Activity
 
